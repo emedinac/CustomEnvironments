@@ -1,0 +1,40 @@
+<mujoco>
+    <compiler inertiafromgeom="true"/>
+    <visual>
+        <headlight ambient="0.4 0.4 0.4" diffuse="0.6 0.6 0.6" specular="0.5 0.5 0.5"/>
+    </visual>
+    <asset>
+        <texture type="skybox" builtin="gradient" rgb1="0.44 0.85 0.56" rgb2="0.46 0.87 0.58" width="32" height="32"></texture>	
+        <texture name="texplane" type="2d" builtin="checker" rgb1="1 1 1" rgb2="1 1 1" width="100" height="100" />
+        <material name='MatPlane' reflectance='0.0' texture="texplane" texrepeat="1 1" texuniform="true"/>
+    </asset>
+    
+    
+	<default>
+        <joint limited='true' damping='1' armature='0'/>
+        <geom contype='3' conaffinity='3' condim='1' friction="0.005 0.005 0.005" margin="0.001" solref=".02 1" solimp='.95 .98 .05'/>
+        <default class="body">
+            <geom pos="0 0 0" size="0.1 0.1 0.3" quat="0.707 0 0.707 0" rgba="0.5 0.5 0.5 1" type="box"/>
+        </default>
+        <default class="piston">
+            <geom pos="0.2 0 0" rgba="0.1 0.1 0.1 1" quat="0.707 0 0 0" size="0.3 0.05 0.05" type="box"/>
+            <joint limited="true" pos="0 0 0" range="-0.1 0.1" type="slide" axis="1 0 0"/>
+        </default>
+    </default>
+	
+	<option gravity="0 0 -9.81" integrator="RK4" timestep="0.001"/>
+	
+	<size nstack="3000"/>
+
+<!--	
+    <worldbody>
+	    <body name="hydraulic_piston" pos="0 0 0">
+		    <geom name="body" condim="1" pos="0 0 0" quat="0.707 0 0.707 0" size="0.1 0.1 0.3" rgba="0.5 0.5 0.5 1" type="box"/>
+		    <body name="piston" pos="0 0 0">
+			    <joint name="slider" axis="1 0 0" limited="true" pos="0 0 0" range="-0.1 0.1" type="slide"/>
+			    <geom name="piston" condim="1" pos="0.2 0 0" rgba="0.1 0.1 0.1 1" size="0.3 0.05 0.05" type="box"/>
+		    </body>
+	    </body>
+	</worldbody>
+-->
+</mujoco>
